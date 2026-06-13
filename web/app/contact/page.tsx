@@ -22,17 +22,12 @@ type FormValues = z.infer<typeof schema>;
 function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className={`text-sm font-medium ${error ? 'text-red-600' : 'text-gray-700'}`}>{label}</label>
       {children}
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-red-600 mt-0.5">{error}</p>}
     </div>
   );
 }
-
-const inputCls = (err?: string) =>
-  `w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-    err ? 'border-red-400' : 'border-gray-300'
-  }`;
 
 export default function ContactPage() {
   const router = useRouter();
@@ -82,20 +77,20 @@ export default function ContactPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
           <div className="grid grid-cols-2 gap-4">
             <Field label="First name" error={errors.firstName?.message}>
-              <input {...register('firstName')} className={inputCls(errors.firstName?.message)} />
+              <input {...register('firstName')} className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.firstName?.message ? 'border-red-400' : 'border-gray-300'}`} />
             </Field>
             <Field label="Last name" error={errors.lastName?.message}>
-              <input {...register('lastName')} className={inputCls(errors.lastName?.message)} />
+              <input {...register('lastName')} className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.lastName?.message ? 'border-red-400' : 'border-gray-300'}`} />
             </Field>
           </div>
           <Field label="Email" error={errors.email?.message}>
-            <input type="email" {...register('email')} className={inputCls(errors.email?.message)} />
+            <input type="email" {...register('email')} className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
           <Field label="Phone" error={errors.phone?.message}>
-            <input type="tel" {...register('phone')} placeholder="0412 345 678" className={inputCls(errors.phone?.message)} />
+            <input type="tel" {...register('phone')} placeholder="0412 345 678" className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.phone?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
           <Field label="Additional info / Note" error={errors.note?.message}>
-            <textarea {...register('note')} rows={3} className={inputCls(errors.note?.message)} />
+            <textarea {...register('note')} rows={3} className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.note?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
           <button
             type="submit"
