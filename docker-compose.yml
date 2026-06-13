@@ -28,5 +28,15 @@ services:
       DB_NAME: openagent
       WEB_ORIGIN: http://localhost:3000
 
+  web:
+    build:
+      context: ./web
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:3001
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
 volumes:
   pgdata:
