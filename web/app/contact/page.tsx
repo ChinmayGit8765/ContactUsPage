@@ -7,24 +7,58 @@ import { z } from 'zod';
 import { Card } from '@/components/ui/Card';
 import { useCreateContact } from '@/hooks/useCreateContact';
 
+// Kept identical to the backend DTO (api/src/contacts/dto/create-contact.dto.ts).
 const AU_PHONE = /^(\+?61|0)[2-578]\d{8}$/;
+// Accept what people actually type — "0412 345 678", "(04) 1234 5678" — then
+// normalise before validating and before sending, so the API gets a clean value.
+const normalizePhone = (v: string) => v.replace(/[\s()-]/g, '');
 
 const schema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
-  email: z.string().email('Enter a valid email'),
-  phone: z.string().regex(AU_PHONE, 'Enter a valid Australian phone number'),
+  firstName: z.string().trim().min(1, 'First name is required'),
+  lastName: z.string().trim().min(1, 'Last name is required'),
+  email: z
+    .string()
+    .trim()
+    .min(1, 'Email is required')
+    .refine((v) => v.includes('@'), { message: 'Email needs an @ symbol — e.g. name@example.com' })
+    .refine((v) => z.string().email().safeParse(v).success, {
+      message: 'Enter a valid email — e.g. name@example.com',
+    }),
+  phone: z
+    .string()
+    .trim()
+    .min(1, 'Phone is required')
+    .refine((v) => /^(\+?61|0)/.test(normalizePhone(v)), {
+      message: 'Australian numbers start with 04, 02, 03, 07, 08 or +61',
+    })
+    .refine((v) => AU_PHONE.test(normalizePhone(v)), {
+      message: 'Enter a valid Australian number — e.g. 0412 345 678 or +61 412 345 678',
+    }),
   note: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({
+  label,
+  error,
+  hint,
+  children,
+}: {
+  label: string;
+  error?: string;
+  hint?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex flex-col gap-1">
       <label className={`text-sm font-medium ${error ? 'text-red-600' : 'text-gray-700'}`}>{label}</label>
       {children}
-      {error && <p className="text-xs text-red-600 mt-0.5">{error}</p>}
+      {error ? (
+        <p className="text-xs text-red-600 mt-0.5">{error}</p>
+      ) : hint ? (
+        <p className="text-xs text-gray-400 mt-0.5">{hint}</p>
+      ) : null}
     </div>
   );
 }
@@ -38,7 +72,11 @@ export default function ContactPage() {
   });
 
   async function onSubmit(data: FormValues) {
-    const contact = await createContact(data);
+    const contact = await createContact({
+      ...data,
+      email: data.email.trim(),
+      phone: normalizePhone(data.phone),
+    });
     router.push(`/thank-you?name=${encodeURIComponent(contact.firstName)}`);
   }
 
@@ -83,10 +121,10 @@ export default function ContactPage() {
               <input {...register('lastName')} className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.lastName?.message ? 'border-red-400' : 'border-gray-300'}`} />
             </Field>
           </div>
-          <Field label="Email" error={errors.email?.message}>
-            <input type="email" {...register('email')} className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email?.message ? 'border-red-400' : 'border-gray-300'}`} />
+          <Field label="Email" error={errors.email?.message} hint="Include an @ symbol, e.g. name@example.com">
+            <input type="email" {...register('email')} placeholder="name@example.com" className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
-          <Field label="Phone" error={errors.phone?.message}>
+          <Field label="Phone" error={errors.phone?.message} hint="Australian number — start with 04, 02, 03, 07, 08 or +61">
             <input type="tel" {...register('phone')} placeholder="0412 345 678" className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.phone?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
           <Field label="Additional info / Note" error={errors.note?.message}>
