@@ -9,3 +9,6 @@ pgdata
 
 # Claude Code — keep shared project config, ignore personal/local overrides
 .claude/settings.local.json
+
+# The OpenAgent tech-test brief is proprietary — keep it local, never publish
+OpenAgentTechTest202606.pdf
