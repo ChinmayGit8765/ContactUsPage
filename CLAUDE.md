@@ -94,7 +94,7 @@ Junior Software Engineer tech test. Full-stack monorepo:
 
 | Route       | Page                | Key behaviour                                     |
 |-------------|---------------------|---------------------------------------------------|
-| /           | redirect            | → /contact                                        |
+| /           | Landing             | Project overview with links to /contact and /contacts |
 | /contact    | Contact Us          | Company info card + form; on submit → /thank-you?name=... |
 | /thank-you  | Thank You           | Reads ?name= from URL, personalised greeting      |
 | /contacts   | Contacts List       | SWR/fetch, newest-first, verify + delete actions  |
@@ -103,10 +103,10 @@ Junior Software Engineer tech test. Full-stack monorepo:
 
 ```
 OpenAgent
-Phone:   1300 765 030
+Phone:   13 24 34
 Email:   support@openagent.com.au
-Address: Level 10, 222 Pitt St, Sydney NSW 2000
-Hours:   Mon–Fri 8:30am–5:30pm AEST
+Address: PO Box 419, Alexandria NSW 1435
+Hours:   Monday – Friday 8:30am – 5:00pm
 ```
 
 ## Tech Stack

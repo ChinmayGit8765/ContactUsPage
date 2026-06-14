@@ -38,7 +38,11 @@ export function ContactCard({ contact, onVerify, onDelete }: ContactCardProps) {
           <button
             onClick={() => onVerify(contact.id)}
             disabled={contact.verified}
-            className="text-sm px-3 py-1.5 rounded-lg border border-blue-300 text-blue-700 hover:bg-blue-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className={`text-sm px-3 py-1.5 rounded-lg border transition-colors ${
+              contact.verified
+                ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+                : 'border-blue-300 text-blue-700 hover:bg-blue-50'
+            }`}
           >
             {contact.verified ? 'Verified' : 'Mark verified'}
           </button>

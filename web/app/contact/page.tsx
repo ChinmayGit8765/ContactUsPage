@@ -50,7 +50,7 @@ export default function ContactPage() {
         <dl className="space-y-3 text-sm text-gray-700">
           <div>
             <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Phone</dt>
-            <dd className="mt-0.5">1300 765 030</dd>
+            <dd className="mt-0.5">13 24 34</dd>
           </div>
           <div>
             <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Email</dt>
@@ -61,12 +61,12 @@ export default function ContactPage() {
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Address</dt>
-            <dd className="mt-0.5">Level 10, 222 Pitt St<br />Sydney NSW 2000</dd>
+            <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Postal Address</dt>
+            <dd className="mt-0.5">PO Box 419<br />Alexandria NSW 1435</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Hours</dt>
-            <dd className="mt-0.5">Mon–Fri 8:30am–5:30pm AEST</dd>
+            <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Contact Centre Hours</dt>
+            <dd className="mt-0.5">Monday – Friday 8:30am – 5:00pm</dd>
           </div>
         </dl>
       </Card>
@@ -77,20 +77,20 @@ export default function ContactPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
           <div className="grid grid-cols-2 gap-4">
             <Field label="First name" error={errors.firstName?.message}>
-              <input {...register('firstName')} className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.firstName?.message ? 'border-red-400' : 'border-gray-300'}`} />
+              <input {...register('firstName')} className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.firstName?.message ? 'border-red-400' : 'border-gray-300'}`} />
             </Field>
             <Field label="Last name" error={errors.lastName?.message}>
-              <input {...register('lastName')} className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.lastName?.message ? 'border-red-400' : 'border-gray-300'}`} />
+              <input {...register('lastName')} className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.lastName?.message ? 'border-red-400' : 'border-gray-300'}`} />
             </Field>
           </div>
           <Field label="Email" error={errors.email?.message}>
-            <input type="email" {...register('email')} className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email?.message ? 'border-red-400' : 'border-gray-300'}`} />
+            <input type="email" {...register('email')} className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
           <Field label="Phone" error={errors.phone?.message}>
-            <input type="tel" {...register('phone')} placeholder="0412 345 678" className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.phone?.message ? 'border-red-400' : 'border-gray-300'}`} />
+            <input type="tel" {...register('phone')} placeholder="0412 345 678" className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.phone?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
           <Field label="Additional info / Note" error={errors.note?.message}>
-            <textarea {...register('note')} rows={3} className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.note?.message ? 'border-red-400' : 'border-gray-300'}`} />
+            <textarea {...register('note')} rows={3} className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.note?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
           <button
             type="submit"
