@@ -22,6 +22,26 @@ Claude Code combines a capable LLM with direct filesystem and shell access, maki
 | This file + README.md | AI-drafted | Content (assumptions, improvements, rationale) reflects genuine design decisions |
 | CLAUDE.md spec | Human-authored spec translated from the PDF brief | — |
 
+## Claude Code project configuration (`.claude/`)
+
+To keep the AI-assisted workflow transparent and reproducible, the project-scoped Claude Code
+config is committed under [`.claude/`](.claude/README.md). It is a small, deliberate set —
+not my whole personal setup:
+
+- **Hooks** (`.claude/settings.json` + `.claude/hooks/`): a `PreToolUse` guard that blocks
+  hand-edits to generated/vendored files (`node_modules`, `dist`, `.next`, lockfiles), and a
+  best-effort `PostToolUse` Prettier format-on-save for the backend. Both are dependency-free
+  Node scripts that run cross-platform.
+- **Subagent** (`.claude/agents/contacts-reviewer.md`): a reviewer scoped to this stack whose
+  first job is checking that the phone/email validation stays in sync between the frontend zod
+  schema and the backend class-validator DTO.
+- **Slash commands** (`.claude/commands/`): `/verify-stack` (build both apps + run API tests),
+  `/new-endpoint` (scaffold a Nest resource to convention), `/smoke-api` (curl the live API
+  end to end).
+
+I can explain and have reviewed every one of these — they automate checks I was already doing
+by hand, rather than generating solution code.
+
 ## What I used alongside the AI
 
 - The official NestJS, TypeORM, Next.js, react-hook-form, and zod documentation for reference

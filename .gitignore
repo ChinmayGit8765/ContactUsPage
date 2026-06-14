@@ -6,3 +6,6 @@ dist
 .env.*
 !.env.example
 pgdata
+
+# Claude Code — keep shared project config, ignore personal/local overrides
+.claude/settings.local.json
