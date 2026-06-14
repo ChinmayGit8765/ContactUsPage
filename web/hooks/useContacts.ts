@@ -8,13 +8,23 @@ export function useContacts() {
   const { data, error, isLoading, mutate } = useSWR<Contact[]>('/contacts', api.getContacts);
 
   async function verify(id: string) {
-    await api.updateContact(id, { verified: true });
-    mutate();
+    try {
+      await api.updateContact(id, { verified: true });
+    } catch (err) {
+      console.error('Failed to verify contact', err);
+    } finally {
+      mutate(); // resync with server truth whether or not the call succeeded
+    }
   }
 
   async function remove(id: string) {
-    await api.deleteContact(id);
-    mutate();
+    try {
+      await api.deleteContact(id);
+    } catch (err) {
+      console.error('Failed to delete contact', err);
+    } finally {
+      mutate();
+    }
   }
 
   return { contacts: data ?? [], error, isLoading, verify, remove };

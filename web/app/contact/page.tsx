@@ -65,19 +65,23 @@ function Field({
 
 export default function ContactPage() {
   const router = useRouter();
-  const { createContact, isLoading } = useCreateContact();
+  const { createContact, isLoading, error } = useCreateContact();
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
 
   async function onSubmit(data: FormValues) {
-    const contact = await createContact({
-      ...data,
-      email: data.email.trim(),
-      phone: normalizePhone(data.phone),
-    });
-    router.push(`/thank-you?name=${encodeURIComponent(contact.firstName)}`);
+    try {
+      const contact = await createContact({
+        ...data,
+        email: data.email.trim(),
+        phone: normalizePhone(data.phone),
+      });
+      router.push(`/thank-you?name=${encodeURIComponent(contact.firstName)}`);
+    } catch {
+      // The message is surfaced to the user via the `error` banner below.
+    }
   }
 
   return (
@@ -130,6 +134,11 @@ export default function ContactPage() {
           <Field label="Additional info / Note" error={errors.note?.message}>
             <textarea {...register('note')} rows={3} className={`w-full rounded-lg border px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.note?.message ? 'border-red-400' : 'border-gray-300'}`} />
           </Field>
+          {error && (
+            <p role="alert" className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+              Couldn’t send your message: {error}. Please try again.
+            </p>
+          )}
           <button
             type="submit"
             disabled={isLoading}
