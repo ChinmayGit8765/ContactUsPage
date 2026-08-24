@@ -1,6 +1,20 @@
-# OpenAgent Contact Us
+# Contact Flow
 
-Full-stack monorepo: NestJS API + Next.js 14 frontend, orchestrated with Docker Compose.
+A production-shaped **contact / lead-capture flow**, end to end: validated form in,
+reviewed contact out. NestJS + TypeORM + PostgreSQL API, Next.js 14 (App Router) +
+Tailwind frontend, one `docker compose up` to run the lot.
+
+Branding ("Lumen & Co.") is a fictional demo company — swap the strings and this
+is a drop-in contact stack for any site.
+
+**What it shows off**
+
+- API-side validation as the source of truth (class-validator DTOs, AU phone
+  regex), mirrored client-side with react-hook-form + zod for instant feedback.
+- Clean NestJS layering: entity → DTO → service → controller, no shortcuts.
+- A live contacts list with verify / delete actions (SWR revalidation).
+- Real tests on the API and a reviewer agent config in `.claude/` that audits
+  changes against the spec in `CLAUDE.md`.
 
 ## Prerequisites
 

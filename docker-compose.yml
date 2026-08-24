@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: openagent
+      POSTGRES_DB: lumenco
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -25,7 +25,7 @@ services:
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASS: postgres
-      DB_NAME: openagent
+      DB_NAME: lumenco
       WEB_ORIGIN: http://localhost:3000
 
   web:

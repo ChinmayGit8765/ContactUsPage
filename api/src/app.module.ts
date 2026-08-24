@@ -11,7 +11,7 @@ import { ContactsModule } from './contacts/contacts.module';
       port: Number(process.env.DB_PORT ?? 5432),
       username: process.env.DB_USER ?? 'postgres',
       password: process.env.DB_PASS ?? 'postgres',
-      database: process.env.DB_NAME ?? 'openagent',
+      database: process.env.DB_NAME ?? 'lumenco',
       entities: [Contact],
       synchronize: true,
     }),

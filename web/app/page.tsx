@@ -7,9 +7,9 @@ export default function Home() {
       {/* Hero */}
       <div className="text-center mb-16">
         <span className="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
-          Junior Software Engineer — Tech Test
+          Full-Stack Showcase
         </span>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">OpenAgent Contact Us</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Lumen & Co. Contact Us</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           A full-stack contact management app built with NestJS, Next.js 14, PostgreSQL, and Docker.
           Submit enquiries via a validated contact form and manage them from a live contacts list.

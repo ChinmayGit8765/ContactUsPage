@@ -1,8 +1,8 @@
-# OpenAgent Contact Us — Project Spec
+# Lumen & Co. Contact Us — Project Spec
 
 ## Purpose
 
-Junior Software Engineer tech test. Full-stack monorepo:
+Full-stack contact-flow showcase. Monorepo:
 - **api/** — NestJS + TypeORM + PostgreSQL
 - **web/** — Next.js 14 (App Router) + Tailwind CSS
 
@@ -102,10 +102,10 @@ Junior Software Engineer tech test. Full-stack monorepo:
 ## Company Details (for the Contact Us card)
 
 ```
-OpenAgent
-Phone:   13 24 34
-Email:   support@openagent.com.au
-Address: PO Box 419, Alexandria NSW 1435
+Lumen & Co.
+Phone:   1300 555 012
+Email:   hello@lumenco.example
+Address: PO Box 100, Melbourne VIC 3000
 Hours:   Monday – Friday 8:30am – 5:00pm
 ```
 
@@ -123,14 +123,14 @@ DB_HOST=localhost        # docker: db
 DB_PORT=5432
 DB_USER=postgres
 DB_PASS=postgres
-DB_NAME=openagent
+DB_NAME=lumenco
 WEB_ORIGIN=http://localhost:3000
 
 # web
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
 
-## Walkthrough Script (for interview)
+## Walkthrough Script (code tour)
 
 1. `CLAUDE.md` — spec and contract (this file)
 2. `api/src/contacts/contact.entity.ts` — data model

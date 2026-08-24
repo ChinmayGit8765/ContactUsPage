@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'OpenAgent — Contact Us',
-  description: 'Get in touch with OpenAgent',
+  title: 'Lumen & Co. — Contact Us',
+  description: 'Get in touch with Lumen & Co.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

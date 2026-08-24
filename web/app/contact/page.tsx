@@ -88,23 +88,23 @@ export default function ContactPage() {
     <div className="max-w-5xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Company details */}
       <Card>
-        <h2 className="text-xl font-bold text-gray-900 mb-4">OpenAgent</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Lumen & Co.</h2>
         <dl className="space-y-3 text-sm text-gray-700">
           <div>
             <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Phone</dt>
-            <dd className="mt-0.5">13 24 34</dd>
+            <dd className="mt-0.5">1300 555 012</dd>
           </div>
           <div>
             <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Email</dt>
             <dd className="mt-0.5">
-              <a href="mailto:support@openagent.com.au" className="text-blue-600 hover:underline">
-                support@openagent.com.au
+              <a href="mailto:hello@lumenco.example" className="text-blue-600 hover:underline">
+                hello@lumenco.example
               </a>
             </dd>
           </div>
           <div>
             <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Postal Address</dt>
-            <dd className="mt-0.5">PO Box 419<br />Alexandria NSW 1435</dd>
+            <dd className="mt-0.5">PO Box 100<br />Melbourne VIC 3000</dd>
           </div>
           <div>
             <dt className="font-semibold text-gray-500 uppercase tracking-wide text-xs">Contact Centre Hours</dt>
